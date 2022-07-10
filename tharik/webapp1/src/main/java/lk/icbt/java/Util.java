@@ -9,6 +9,15 @@ package lk.icbt.java;
  * @author tharik
  */
 public class Util {
+    
+    public static boolean authenticate(String username, String password) {
+        if (username != null && password != null) {
+           return username.equals("icbt") && password.equals("123");   
+        } else {
+            return false;
+        }
+    }
+    
     public static Student[] getStudents() {
         Student[] students = new Student[3];
         
