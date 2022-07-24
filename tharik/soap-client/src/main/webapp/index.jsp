@@ -4,6 +4,7 @@
     Author     : tharik
 --%>
 
+<%@page import="icbt.Student"%>
 <%@page import="icbt.StudentService_Service"%>
 <%@page import="icbt.StudentService"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -20,9 +21,20 @@
               StudentService_Service service = new StudentService_Service();
               StudentService proxy = service.getStudentServicePort();
               
-               out.println(proxy.hello("George"));
+              out.println(proxy.hello("George"));
                 
             %>
         </h1>
+        
+        
+            <%
+            
+                Student st = proxy.getStudent("ST001");
+                
+            %>
+            
+            <p><%out.print(st.getId());%></p>
+            <p><%out.print(st.getName());%></p>
+            <p><%out.print(st.getDob());%></p>
     </body>
 </html>

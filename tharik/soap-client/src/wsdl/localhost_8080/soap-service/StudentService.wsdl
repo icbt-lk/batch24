@@ -10,15 +10,34 @@
 <message name="helloResponse">
 <part name="parameters" element="tns:helloResponse"/>
 </message>
+<message name="getStudent">
+<part name="parameters" element="tns:getStudent"/>
+</message>
+<message name="getStudentResponse">
+<part name="parameters" element="tns:getStudentResponse"/>
+</message>
 <portType name="StudentService">
 <operation name="hello">
 <input wsam:Action="http://icbt/StudentService/helloRequest" message="tns:hello"/>
 <output wsam:Action="http://icbt/StudentService/helloResponse" message="tns:helloResponse"/>
 </operation>
+<operation name="getStudent">
+<input wsam:Action="http://icbt/StudentService/getStudentRequest" message="tns:getStudent"/>
+<output wsam:Action="http://icbt/StudentService/getStudentResponse" message="tns:getStudentResponse"/>
+</operation>
 </portType>
 <binding name="StudentServicePortBinding" type="tns:StudentService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
 <operation name="hello">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getStudent">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
