@@ -22,4 +22,9 @@ public class StudentService {
     public String hello(@WebParam(name = "name") String txt) {
         return "Hello " + txt + " !!!!!!!!";
     }
+    
+    @WebMethod(operationName = "getStudent")
+    public Student getStudent(@WebParam(name = "id") String id) {
+        return new Student(id, "George", "1982");
+    }
 }
