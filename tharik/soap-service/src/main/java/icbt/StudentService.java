@@ -25,6 +25,7 @@ public class StudentService {
     
     @WebMethod(operationName = "getStudent")
     public Student getStudent(@WebParam(name = "id") String id) {
-        return new Student(id, "George", "1982");
+        DBUtils utils = new DBUtils();
+        return utils.getStudent(id);
     }
 }
