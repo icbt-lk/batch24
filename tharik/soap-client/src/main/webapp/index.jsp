@@ -29,7 +29,13 @@
         
             <%
             
-                Student st = proxy.getStudent("ST001");
+                String id = "1";
+                
+                if (request.getParameter("id") != null) {
+                    id = request.getParameter("id");
+                }
+                
+                Student st = proxy.getStudent(id);
                 
             %>
             
