@@ -16,18 +16,19 @@
     </head>
     <body>
         <%
+            final String SESSESION_ID = "sesid";
             String username = request.getParameter("username");    
             String password = request.getParameter("password"); 
 
             if(Util.authenticate(username, password)) {
                 String id = UUID.randomUUID().toString().replace("-", "");
-                Cookie cookie = new Cookie("sesid", id);
+                Cookie cookie = new Cookie(SESSESION_ID, id);
                 session.setAttribute(id, username);
                 response.addCookie(cookie);
             } else {
                 boolean isAthuenticated = false;
                 for(Cookie cookie : request.getCookies()) {
-                    if(cookie.getName().equals("sesid")) {
+                    if(cookie.getName().equals(SESSESION_ID)) {
                         username = (String)session.getAttribute(cookie.getValue());
                         if(username != null) {
                             isAthuenticated = true;
@@ -39,8 +40,6 @@
                 }
             }
         %>
-        
-        
         <h1>Hello <%out.println(username);%>!</h1>
     </body>
 </html>
