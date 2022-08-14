@@ -2,13 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package icbt;
+package lk.icbt.rest.service;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,7 +41,23 @@ public class DBUtils {
     }
     
     public List<Student> getStudents() {
-        return null;
+        List<Student> students = new ArrayList<>();
+        try {
+            Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            Statement statement = connection.createStatement();
+            
+            ResultSet resultSet = statement.executeQuery("select * from students");
+            
+            while(resultSet.next()) {
+                Student student = new Student(resultSet.getString("id"), 
+                        resultSet.getString("name"), 
+                        resultSet.getString("dob"));
+                students.add(student);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }    
+        return students;
     }
     
     public boolean addStudent(Student student) {
