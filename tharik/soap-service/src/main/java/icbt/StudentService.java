@@ -41,7 +41,6 @@ public class StudentService {
         DBUtils utils = new DBUtils();
         return utils.addStudent(student);
     }
-    
         
     @WebMethod(operationName = "updateStudent")
     public boolean updateStudent(@WebParam(name = "student") Student student) {
