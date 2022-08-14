@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 /**
  *
@@ -36,5 +37,49 @@ public class DBUtils {
             System.out.println(e);
         }    
         return student;
+    }
+    
+    public List<Student> getStudents() {
+        return null;
+    }
+    
+    public boolean addStudent(Student student) {
+        try {
+            Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            Statement statement = connection.createStatement();
+        
+            int rows = statement.executeUpdate("INSERT INTO students (`id`, `name`, `dob`) VALUES ('" 
+                    + student.getId() + "', '" + student.getName() +  "', '" + student.getDob() + "')");
+            
+            return rows > 0;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }  
+        return false;
+    }
+    
+    public boolean updateStudent(Student student) {
+        try {
+            Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            Statement statement = connection.createStatement();
+            int rows = statement.executeUpdate("UPDATE `students` SET `name` = '" + student.getName() + "', `dob` = '" 
+                    + student.getDob() + "' WHERE (`id` = '"  + student.getId() + "')");
+            return rows > 0;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }  
+        return false;
+    }
+    
+    public boolean deleteStudent(String id) {
+                try {
+            Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            Statement statement = connection.createStatement();
+            int rows = statement.executeUpdate("DELETE FROM `students` WHERE (`id` = '" + id + "');");
+            return rows > 0;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }  
+        return false;
     }
 }
