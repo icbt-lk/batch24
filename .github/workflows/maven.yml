@@ -23,5 +23,5 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      working-directory: batch24/tharik/rest-service/
+      working-directory: tharik/rest-service/
       run: mvn -B package --file pom.xml
