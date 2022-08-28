@@ -24,4 +24,4 @@ jobs:
         cache: maven
     - name: Build with Maven
       working-directory: tharik/rest-service/
-      run: mvn -B package --file pom.xml
+      run: mvn -B package --file pom.xml -Dmaven.test.skip=true
